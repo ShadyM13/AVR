@@ -15,8 +15,13 @@
 
 void MUSART_voidInit(u8 ARG_u8BaudRate, u8 ARG_u8ModeSel, u8 ARG_u8Parity, u8 ARG_u8StopBits, u8 ARG_u8DataBits)
 {
+	//Baud rate selection
 	UBRRL = 51; //Baud Rate: 9600
+
+	//Mode select (ASYNC, SYNC)  ,  Parity selection,  Stop bits selection,   Data bits selection (MUST ALL BE ASSIGNED AT THE SAME TIME)
 	UCSRC = (1 << 7) | (ARG_u8ModeSel << 6) | (ARG_u8Parity << 4) | (ARG_u8StopBits << 3) | ((ARG_u8DataBits & 0b11) << 1);
+
+	//if 9 bits required
 	if(ARG_u8DataBits == MUSART_DATA_BITS_9)
 	{
 		SET_BIT(UCSRB, 2);

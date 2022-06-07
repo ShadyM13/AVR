@@ -16,9 +16,11 @@ void (*MADC_pvoidfUserFunction)(void) = 0;
 
 void MADC_voidInit(u8 ARG_u8Aref, u8 ARG_u8LeftAdjust, u8 ARG_u8Prescalar)
 {
-	ADMUX &= 0b00111111;
+	//Select Voltage refrence
+	ADMUX &= 0b00111111;			//masking
 	ADMUX |= ARG_u8Aref;
 	
+	//Adjust left adjustment
 	if(MADC_ENABLE == ARG_u8LeftAdjust)
 	{
 		SET_BIT(ADMUX, 5);
@@ -28,6 +30,7 @@ void MADC_voidInit(u8 ARG_u8Aref, u8 ARG_u8LeftAdjust, u8 ARG_u8Prescalar)
 		CLEAR_BIT(ADMUX, 5);
 	}
 	
+	//Select prescalar
 	ADCSRA &= 0b11111000;
 	ADCSRA |= ARG_u8Prescalar;
 	

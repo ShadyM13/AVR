@@ -46,7 +46,7 @@
 
 void MADC_voidInit(u8 ARG_u8Aref, u8 ARG_u8LeftAdjust, u8 ARG_u8Prescalar);
 
-void MADC_voidEnableADC(u8 ARG_u8ADCEnable);
+void MADC_voidEnableADC(u8 ARG_u8ADCEnable);                //used inside MADC_voidInit function
 
 void MADC_voidInterruptEnable(u8 ARG_u8InterruptEnable);
 
