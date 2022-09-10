@@ -58,15 +58,15 @@ void MUSART_voidEnableRx(u8 ARG_u8Enable)
 
 void MUSART_voidSendChar(char Data)
 {
-	while(1 != GET_BIT(UCSRA, 5));
+	while(1 != GET_BIT(UCSRA, 5));					//Data register is empty
 	UDR = Data;
-	while(1 != GET_BIT(UCSRA, 6));
+	while(1 != GET_BIT(UCSRA, 6));					//Transmit complete
 	SET_BIT(UCSRA, 6);
 }
 
 char MUSART_charReceiveChar(void)
 {
-	while(1 != GET_BIT(UCSRA, 7));
+	while(1 != GET_BIT(UCSRA, 7));					//Recieve complete
 	return UDR;
 }
 
